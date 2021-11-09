@@ -1,7 +1,7 @@
 #!/bin/bash
 #Utilizziamo questo script per eseguire un check sulle risorse presenti e per creare e aggiornare quelle modificate
 #Variabili
-export USAGE="Usage ./create_resources.sh <PATH_VOLUME> <OCP_PROJECT>"
+export USAGE="Usage ./check-create-resources.bash <PATH_VOLUME> <OCP_PROJECT>"
 export PATH_VOLUME=$1
 export OCP_PROJECT=$2
 export PATH_SETUP_SERVICE="${PATH_VOLUME}/setup.txt"
