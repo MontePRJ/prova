@@ -1,0 +1,10 @@
+#setup.txt
+openjdk-app;dc;true
+openjdk-app;bc;true
+openjdk-app;service;true
+openjdk-app;rotta;true
+openjdk-app;imagestream;true
+openjdk-app;configmap;false
+openjdk-app;secret;false
+openjdk-app;image;false
+#############################################
