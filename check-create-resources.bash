@@ -1,12 +1,19 @@
 #!/bin/bash
+
+
 #Utilizziamo questo script per eseguire un check sulle risorse presenti e per creare e aggiornare quelle modificate
+
+
 #Variabili
 export USAGE="Usage ./check-create-resources.bash <PATH_VOLUME> <OCP_PROJECT>"
 export PATH_VOLUME=$1
 export OCP_PROJECT=$2
 export PATH_SETUP_SERVICE="${PATH_VOLUME}/setup.txt"
 export PATH_ELENCO_MICROSERVIZI="${PATH_VOLUME}/elenco_microservizi.csv"
+
+
 export LISTA_MICROSERVIZI=`cat ${PATH_ELENCO_MICROSERVIZI} | grep -v '^#'`
+
 
 for i in `echo $LISTA_MICROSERVIZI`; do
     export NOME_MICROSERVIZIO=`echo $i | cut -d ';' -f 2`
