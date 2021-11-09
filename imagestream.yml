@@ -1,0 +1,24 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: openjdk-app
+  namespace: prova1
+  labels:
+    application: openjdk-app
+    template.openshift.io/template-instance-owner: 65d2254d-3a91-4033-8139-745daf7a19bb
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - name: latest
+      annotations: null
+      from:
+        kind: DockerImage
+        name: >-
+          quay-registry-quay-quay-registry.apps.prod.cloud.giustizia-amministrativa.it/openshift_prova/openjdk-app:latest
+      generation: 4
+      importPolicy: {}
+      referencePolicy:
+        type: Source
+status:
+
