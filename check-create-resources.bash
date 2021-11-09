@@ -11,8 +11,6 @@ export PATH_ELENCO_MICROSERVIZI=${PATH_VOLUME}"/elenco_microservizi.csv"
 
 export LISTA_MICROSERVIZI=`cat ${PATH_ELENCO_MICROSERVIZI} | grep -v '^#'`
 
-exit 0
-
 for i in `echo $LISTA_MICROSERVIZI`; do
     export NOME_MICROSERVIZIO=`echo $i | cut -d ';' -f 2`
     export BC=`cat ${PATH_SETUP_SERVICE} | grep ^$NOME_MICROSERVIZIO\; | grep ';bc;' | cut -d ';' -f 3`
@@ -23,32 +21,32 @@ for i in `echo $LISTA_MICROSERVIZI`; do
     export SECRET=`cat ${PATH_SETUP_SERVICE} | grep ^$NOME_MICROSERVIZIO\; | grep ';secret;' | cut -d ';' -f 3`  
         
     if [[ $BC == "true" ]]; then
-    oc delete bc/${NOME_MICROSERVIZIO} -n $(params.OCP_PROJECT)
-    oc create -f bc.yml -n $(params.OCP_PROJECT)
+      oc delete bc/${NOME_MICROSERVIZIO} -n $(params.OCP_PROJECT)
+      oc create -f ${PATH_VOLUME}/bc.yml -n $(params.OCP_PROJECT)
     fi
 
     if [[ $DC == "true" ]]; then
-    oc delete dc/${NOME_MICROSERVIZIO} -n $(params.OCP_PROJECT)
-    oc create -f dc.yml -n $(params.OCP_PROJECT)
+      oc delete dc/${NOME_MICROSERVIZIO} -n $(params.OCP_PROJECT)
+      oc create -f ${PATH_VOLUME}/dc.yml -n $(params.OCP_PROJECT)
     fi         
 
     if [[ $SERVICE == "true" ]]; then
-    oc delete service/${NOME_MICROSERVIZIO} -n $(params.OCP_PROJECT)
-    oc create -f service.yml -n $(params.OCP_PROJECT)
+      oc delete service/${NOME_MICROSERVIZIO} -n $(params.OCP_PROJECT)
+      oc create -f ${PATH_VOLUME}/service.yml -n $(params.OCP_PROJECT)
     fi   
 
     if [[ $ROTTA == "true" ]]; then
-    oc delete rotta/${NOME_MICROSERVIZIO} -n $(params.OCP_PROJECT)
-    oc create -f rotta.yml -n $(params.OCP_PROJECT)
+      oc delete rotta/${NOME_MICROSERVIZIO} -n $(params.OCP_PROJECT)
+      oc create -f ${PATH_VOLUME}/rotta.yml -n $(params.OCP_PROJECT)
     fi  
 
     if [[ $CONFIGMAP == "true" ]]; then
-    oc delete configmap/${NOME_MICROSERVIZIO} -n $(params.OCP_PROJECT)
-    oc create -f configmap.yml -n $(params.OCP_PROJECT)
+      oc delete configmap/${NOME_MICROSERVIZIO} -n $(params.OCP_PROJECT)
+      oc create -f ${PATH_VOLUME}/configmap.yml -n $(params.OCP_PROJECT)
     fi  
 
     if [[ $SECRET == "true" ]]; then
-    oc delete secret/${NOME_MICROSERVIZIO} -n $(params.OCP_PROJECT)
-    oc create -f secret.yml -n $(params.OCP_PROJECT)
+      oc delete secret/${NOME_MICROSERVIZIO} -n $(params.OCP_PROJECT)
+      oc create -f ${PATH_VOLUME}/secret.yml -n $(params.OCP_PROJECT)
     fi  
 done
