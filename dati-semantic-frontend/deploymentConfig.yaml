@@ -66,7 +66,7 @@ spec:
           imagePullPolicy: Always
           terminationMessagePolicy: File
           image: >-
-            image-registry.openshift-image-registry.svc:5000/ll/dati-semantic-frontend:20211130-255-62cec87
+            image-registry.openshift-image-registry.svc:5000/ll/dati-semantic-frontend:claudia
       restartPolicy: Always
       terminationGracePeriodSeconds: 75
       dnsPolicy: ClusterFirst
