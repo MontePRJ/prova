@@ -1,5 +1,5 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: configmap-frontend
+  name: configmap-frontend-1
   namespace: prova
